@@ -1,0 +1,126 @@
+@CHARSET "UTF-8";
+@import url("normalize.css");
+
+body {
+	background-color: #ffffff;
+}
+
+footer {
+	font-size:12px;
+	text-align:center;	
+}
+
+h1 {
+	font-family: "CharleMagne Std", "Comic Sans MS";
+	font-weight: bold;
+	padding: 0.5%;
+	text-align: center;
+	font-size: 30px;
+}
+
+h2 {
+	font-family: "Garamond";
+	font-weight: bold;
+	text-align: center;
+	font-size: 25px;
+}
+
+h3 {
+	font-family: "Bookman Old Style", arial;
+	font-weight: bold;
+	font-size: 20px;
+}
+input {
+	display: inline-block;
+}
+
+
+header {
+	background-color: #ffffff;
+	border: 1px solid #000000;
+	margin: 1%;
+}
+
+#wrapper {
+	border: 1px solid #000000;
+	background-color: #ffffff;
+	margin: 1%;
+	overflow: hidden;
+}
+
+#nav {
+	display:none;
+}
+
+#contentSection {
+	background-color: #ffffff;
+	border: 1px solid #000000;
+	padding: 10px;
+	display:block;
+	margin: 1%;
+}
+
+li {
+	list-style-type: none;
+	margin: 5px;
+	display: inline-block;
+}
+
+.photoText {
+	display: block;
+}
+
+.withBorder {
+	border: 2px solid blue;
+}
+
+label {
+	display: inline-block;
+	width: 150px;
+	font-weight: bold;
+}
+
+.submissionButtons {
+	text-align: right;
+}
+
+.entryBox {
+	display: block;
+	margin: 10px;
+}
+
+
+.inputWidth {
+	width: 300px;
+}
+
+/* For photo_detail.html */
+#photo_detail_text {
+	font: 20px garamond, arial;
+	margin-left: 20px;
+	margin-bottom: 20px;
+	display: inline-block;
+}
+
+/*For new_user.html */
+#fieldsetSexo {
+	width: 350px;
+}
+
+#fieldsetSexo>legend {
+	font-weight: bold;
+}
+
+#fieldsetSexo>.radioLabel {
+	display: inline-block;
+	margin-left: 10px;
+	width: auto;
+}
+
+#fieldsetSexo>#firstRadio {
+	padding-left: 140px;
+}
+
+/* For photo_search.html */
+#submitSearch {
+	width:150px;

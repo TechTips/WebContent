@@ -1,0 +1,145 @@
+@CHARSET "utf-8";
+
+@import url("normalize.css");
+
+body {
+	background-color: #cccccc;
+}
+
+footer {
+	font-size:12px;
+	text-align:center;	
+}
+
+h1 {
+	font-family: "CharleMagne Std", "Comic Sans MS";
+	font-weight: bold;
+	padding: 0.5%;
+	text-align: center;
+}
+
+h2 {
+	font-family: "Garamond";
+	font-weight: bold;
+	text-align: center;
+}
+
+h3 {
+	font-family: "Bookman Old Style", arial;
+	font-weight: bold;
+}
+input {
+	display: inline-block;
+}
+
+
+header {
+	background-color: #ffffff;
+	border: 6px solid #003366;
+	/*max-width: 1000px;*/
+	margin: 1%;
+	border-radius:30px;
+	box-shadow:5px 5px 10px gray;
+}
+
+#wrapper {
+	border-radius:30px;
+	box-shadow:5px 5px 10px gray;
+	border: 6px solid #003366;
+	background-color: #cccccc;
+	/*max-width:1000px;*/
+	margin: 1%;
+	overflow: hidden;
+}
+
+#nav {
+	border-radius:10px;
+	box-shadow:5px 5px 10px gray;
+	background-color: #ffffff;
+	border: 2px solid #003366;
+	padding: 5px;
+	margin: 1%;
+}
+
+#contentSection {
+	border-radius:10px;
+	box-shadow:5px 5px 10px gray;
+	background-color: #ffffff;
+	border: 2px solid #003366;
+	padding: 10px;
+}
+
+.link {
+	border-radius:5px;
+	border: 1px solid #003366;
+	background-color: #c1dad6;
+	font-family: Garamond;
+	font-size: 17px;
+	font-weight: bold;
+}
+
+li {
+	list-style-type: none;
+	margin: 5px;
+	display: inline-block;
+}
+
+.photoText {
+	display: block;
+}
+
+.withBorder {
+	border: 3px solid #0000ff;
+}
+
+label {
+	display: inline-block;
+	width: 150px;
+	font-weight: bold;
+}
+
+.submissionButtons {
+	text-align: right;
+}
+
+.entryBox {
+	display: block;
+	margin: 10px;
+}
+
+
+.inputWidth {
+	width: 300px;
+}
+
+/* For photo_detail.html */
+#photo_detail_text {
+	font: 20px garamond, arial;
+	margin-left: 20px;
+	margin-bottom: 20px;
+	display: inline-block;
+}
+
+/*For new_user.html */
+#fieldsetGender {
+	width: 350px;
+}
+
+#fieldsetGender>legend {
+	font-weight: bold;
+}
+
+#fieldsetGender>.radioLabel {
+	display: inline-block;
+	margin-left: 10px;
+	width: auto;
+}
+
+#fieldsetGender>#firstRadio {
+	padding-left: 140px;
+}
+
+/* For photo_search.html */
+#submitSearch {
+	width:150px;
+}

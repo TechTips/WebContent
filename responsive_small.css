@@ -1,0 +1,42 @@
+@CHARSET "UTF-8";
+
+
+h1 {
+	font-size: 30px;
+}
+
+h2 {
+	font-size: 25px;
+}
+
+h3 {
+	font-size: 20px;
+}
+
+#nav {
+	display:block;
+}
+
+#contentSection {
+	display:block;
+	margin: 1%;
+}
+
+.linkBlock {
+	text-align:center;
+}
+
+.link {
+	margin: 5px 5px 5px 5px;
+	padding: 5px;
+	display: inline-block;
+}
+
+/* For index.html */
+#registerForm>#userNameBlock {
+	display:inline-block;
+}
+
+#registerForm>#passwordBlock {
+	display:inline-block;
+}

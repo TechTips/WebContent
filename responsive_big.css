@@ -1,0 +1,42 @@
+@CHARSET "UTF-8";
+
+
+h1 {
+	font-size: 45px;
+}
+
+h2 {
+	font-size: 30px;
+}
+
+h3 {
+	font-size: 25px;
+}
+
+#nav {
+	width: 18%;
+	float: left;
+}
+
+#contentSection {
+	width: 75%;
+	display: inline-block;
+	float: left;
+	margin: 1% 0%;
+}
+
+.link {
+	margin-top: 10px;
+	margin-bottom: 5px;
+	display: block;
+}
+
+/* For index.html */
+#registerForm>label {
+	display: inline-block;
+	width: 10%;
+}
+
+#registerForm>.linkBlock {
+	margin-top: 60px;
+}

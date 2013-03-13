@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Fotos para todos</title>
+<link rel="stylesheet" href="print.css" media="print" />
+<link rel="stylesheet" href="general.css" media="screen"/>
+<link rel="stylesheet" href="responsive_small.css" media="screen and (max-width:940px)" />
+<link rel="stylesheet" href="responsive_big.css" media="screen and (min-width:939px)" />
+</head>
+<body>
+	<header>
+		<h1>Fotos para todos</h1>
+		<h2>¡Compartir y encontrar fotos gratis!</h2>
+	</header>
+	<div id="wrapper">
+		<div id="nav">
+			<div class="linkBlock">
+				<a class="link" href="search_result.html">Resultado de búsqueda</a>
+				<a class="link" href="index.html">Volver al inicio</a>
+			</div>
+		</div>
+		<div id="contentSection">
+			<h3>Buscar fotos...</h3>
+
+			<form action="search_results.html" method="get">
+				<div class="entryBox">
+					<label for="title">Título:</label>
+					<input type="text" class="inputWidth" id="title" name="title" />
+				</div>
+				<div class="entryBox">
+					<label for="photo_id">Foto Id:</label>
+					<input type="number" class="inputWidth" id="photo_id" name="photo_id" />
+				</div>
+				<div class="entryBox">
+					<label for="photo_date_from">Fecha entre:</label>
+					<input type="date" class="inputWidth" id="photo_date_from" name="photo_date_from" />
+				</div>
+				<div class="entryBox">
+					<label for="photo_date_to">y:</label>
+					<input type="date" class="inputWidth" id="photo_date_to" name="photo_date_to" />
+				</div>
+				<div class="entryBox">
+					<label for="country">País:</label>
+					<input type="text" class="inputWidth" id="photo_país" name="photo_país" />
+				</div>
+				<div class="entryBox">
+					<label for="album">Álbum:</label>
+					<input type="text" class="inputWidth" id="album" name="album" />
+				</div>
+				<div class="entryBox">
+					<label for="user_name">Usuario que lo ha subido:</label>
+					<input type="text" class="inputWidth" id="user_name" name="user_name" />
+				</div>
+				<div class="entryBox submissionButtons">
+					<input type="submit" id="submitSearch" name="submitSearch" value="Buscar">
+					<input type="Reset" value="Limpiar datos de búsqueda">
+				</div>
+
+			</form>
+		</div>
+	</div>
+
+	<footer>Copyright 2013 by FotosParaTodos</footer>
+</body>
+</html>

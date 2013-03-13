@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Fotos para todos</title>
+<link rel="stylesheet" href="print.css" media="print" />
+<link rel="stylesheet" href="general.css" media="screen" />
+<link rel="stylesheet" href="responsive_small.css" media="screen and (max-width:940px)" />
+<link rel="stylesheet" href="responsive_big.css" media="screen and (min-width:939px)" />
+<script src="validation.js"></script>
+</head>
+<body>
+	<header>
+		<h1>Fotos para todos</h1>
+		<h2>¡Compartir y encontrar fotos gratis!</h2>
+	</header>
+	<div id="wrapper">
+		<div id="nav">
+			<form id="registerForm" action="member_validation.php" method="post"
+				onSubmit="return memberValidation(this)"
+			>
+				<div id="userNameBlock">
+					<label for="userName">
+						<b>Usuario:</b>
+					</label>
+					<input type="text" id="userName" name="userName" placeholder="mi_nombre_usuario" />
+				</div>
+				<div id="passwordBlock">
+					<label for="password">
+						<b>Contraseña:</b>
+					</label>
+					<input type="password" id="password" name="password" placeholder="Contraseña"
+						pattern="[A-Za-z0-9]{6}"
+					/>
+				</div>
+				<input type="submit" id="submit" name="submit" value="Entrar">
+			</form>
+			<div class="linkBlock">
+				<a class="link" href="new_user.html">Regístrate ¡Es fácil y gratis! </a>
+				<a class="link" href="photo_search.html">Buscar fotos</a>
+			</div>
+		</div>
+		<div id="contentSection">
+			<h3>Últimas fotos subidas</h3>
+
+			<ul>
+				<li><a href="photo_detail.html">
+						<img src="fotos/camino.jpg" class="withBorder" alt="camino" width="175" height="175">
+					</a>
+					<div class="photoText">
+						Título: xxxx <br />Fecha: xx-xx-xx <br />País: xxxx
+					</div></li>
+				<li><a href="photo_detail.html">
+						<img src="fotos/rio.jpg" class="withBorder" alt="rio" width="175" height="175">
+					</a>
+					<div class="photoText">
+						Título: xxxx <br />Fecha: xx-xx-xx <br />País: xxxx
+					</div></li>
+				<li><a href="photo_detail.html">
+						<img src="fotos/arbol.jpg" class="withBorder" alt="arbol" width="175" height="175">
+					</a>
+					<div class="photoText">
+						Título: xxxx <br />Fecha: xx-xx-xx <br />País: xxxx
+					</div></li>
+				<li><a href="photo_detail.html">
+						<img src="fotos/nieve.jpg" class="withBorder" alt="nieve" width="175" height="175">
+					</a>
+					<div class="photoText">
+						Título: xxxx <br />Fecha: xx-xx-xx <br />País: xxxx
+					</div></li>
+				<li><a href="photo_detail.html">
+						<img src="fotos/otono.jpg" class="withBorder" alt="otono" width="175" height="175">
+					</a>
+					<div class="photoText">
+						Título: xxxx <br />Fecha: xx-xx-xx <br />País: xxxx
+					</div></li>
+			</ul>
+		</div>
+	</div>
+	<footer>Copyright 2013 by FotosParaTodos</footer>
+</body>
+</html>
