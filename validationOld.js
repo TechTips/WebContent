@@ -43,24 +43,50 @@ function validateNewMember(form) {
 
 	// Validación para el nombre de usuario:
 	var bcorrectUserFormat = true;
-	var msgUserFormat = "\nEl nombre de usuario debe tener:\n- entre 3 y 15 caracteres\n- solo caracteres alfanuméricos\n";
+	var msgUserFormat = "\nEl nombre de usuario debe tener:\n";
 	var name = form.user_name.value;
-	var namePattern=/^[a-zA-Z0-9]{3,15}$/;
-	if (namePattern.test(name) == false) {
+	if (correctLength(3, 15, name) == false) {
+		msgUserFormat += "- entre 3 y 15 caracteres\n";
+		bcorrectFormat = false;
+		bcorrectUserFormat = false;
+	}
+	if (onlyEnglishCharsAndNums(name) == false) {
+		msgUserFormat += "- solo caracteres alfanuméricos\n";
+		form.user_name.focus();
 		bcorrectFormat = false;
 		bcorrectUserFormat = false;
 	}
 
 	// Validación para la contraseña
 	var bcorrectPassFormat = true;
-	var msgPassFormat = "\nLa contraseña debe tener:\n- entre 6 y 15 caracteres\n- solo caracteres alfanuméricos y el bajo guión\n- al menos una letra en mayúscula\n- al menos una letra en minúscula\n- al menos un número\n";
+	var msgPassFormat = "\nLa contraseña debe tener:\n";
 	var contrasena1 = form.pass.value;
-	var passPattern=/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{6,15}$/;
-	if (passPattern.test(contrasena1) == false) {
+	if (correctLength(6, 15, contrasena1) == false) {
+		msgPassFormat += "- entre 6 y 15 caracteres\n";
 		bcorrectFormat = false;
 		bcorrectPassFormat = false;
 	}
-	
+	if (onlyEnglishCharsAndNumsUnderlined(contrasena1) == false) {
+		msgPassFormat += "- solo caracteres alfanuméricos y el bajo guión\n";
+		bcorrectFormat = false;
+		bcorrectPassFormat = false;
+	}
+	if (hasCapitalLetter(contrasena1) == false) {
+		msgPassFormat += "- al menos una letra en mayúscula\n";
+		bcorrectFormat = false;
+		bcorrectPassFormat = false;
+	}
+	if (hasLowerCasedLetter(contrasena1) == false) {
+		msgPassFormat += "- al menos una letra en minúscula\n";
+		bcorrectFormat = false;
+		bcorrectPassFormat = false;
+	}
+	if (hasNumber(contrasena1) == false) {
+		msgPassFormat += "- al menos un número\n";
+		bcorrectFormat = false;
+		bcorrectPassFormat = false;
+	}
+
 	// Validación para contraseña2
 	var bcorrectConfirmPassFormat = true;
 	var msgConfirmPassFormat = "\nLas dos contraseñas deben coincidir\n";
@@ -74,22 +100,18 @@ function validateNewMember(form) {
 	var bcorrectEmailFormat = true;
 	var msgEmailFormat = "\nLa dirección de correo electrónico debe tener:\n- un nombre de usuario, el símbolo \"@\" y un dominio\n- el dominio principal (después del \".\"),\n  no puede tener menos de dos caracteres o más de cuatro caracteres\n";
 	var email = form.email.value;
-	var emailPattern=/^[a-zA-Z0-9._-]{1,}@[a-zA-Z0-9]{1,}\.[a-zA-Z0-9]{2,4}$/;
-	if (emailPattern.test(email) == false) {
+	if (correctEmailFormat(email) == false) {
 		bcorrectEmailFormat=false;
 		bcorrectFormat=false;
-		alert("email bad");
 	}
 
 	// Validación para la fecha de nacimiento
 	var bcorrectDateFormat = true;
 	var msgDateFormat = "\nTiene que ser una fecha válida en el formato: DD-MM-AAAA\n";
 	var dateStr = form.date_of_birth.value;
-	var datePattern=/^(0?[1-9]|[12][0-9]|3[01])[/-](0?[1-9]|1[012])[/-](19|20)\d\d$/;
-	if (datePattern.test(dateStr) == false) {
+	if (correctDateFormat(dateStr) == false) {
 		bcorrectFormat=false;
 		bcorrectDateFormat=false;
-		alert("fecha bad");
 	}
 	
 	// Mostrar el mensaje adecuado
@@ -139,6 +161,89 @@ function correctDateFormat(dateStr) {
 		return true;
 }
 
+function correctEmailFormat(email) {
+	var atPos = email.indexOf("@");
+	var dotPos = email.lastIndexOf(".")+1;
+	if (atPos < 1 || (email.length - dotPos) < 2 || (email.length - dotPos) > 4)
+		return false;
+}
+
+function hasLowerCasedLetter(content) {
+	for ( var index = 0; index < content.length; index++) {
+		var code = content.charCodeAt(index);
+		if (code >= 97 && code <= 122)
+			return true;
+	}
+	return false;
+}
+
+function hasCapitalLetter(content) {
+	for ( var index = 0; index < content.length; index++) {
+		var code = content.charCodeAt(index);
+		if (code >= 65 && code <= 90)
+			return true;
+	}
+	return false;
+}
+
+function hasNumber(content) {
+	for ( var index = 0; index < content.length; index++) {
+		var code = content.charCodeAt(index);
+		if (code >= 48 && code <= 57)
+			return true;
+	}
+	return false;
+}
+
+function onlyEnglishCharsAndNums(content) {
+	for ( var index = 0; index < content.length; index++) {
+		var code = content.charCodeAt(index);
+		if ((isEnglishCharCode(code) == false)
+				&& (isNumericCharCode(code) == false)) {
+			return false;
+		}
+	}
+	return true;
+}
+
+function onlyEnglishCharsAndNumsUnderlined(content) {
+	for ( var index = 0; index < content.length; index++) {
+		var code = content.charCodeAt(index);
+		if ((isEnglishCharCode(code) == false)
+				&& (isNumericCharCode(code) == false)
+				&& (isUnderlinedCharCode(code) == false)) {
+			return false;
+		}
+	}
+	return true;
+}
+function isUnderlinedCharCode(code) {
+	if (code == 95)
+		return true;
+	else
+		return false;
+}
+
+function isNumericCharCode(code) {
+	if ((code >= 48 && code <= 57))
+		return true;
+	else
+		return false;
+}
+
+function isEnglishCharCode(code) {
+	if ((code >= 65 && code <= 90) || (code >= 97 && code <= 122))
+		return true;
+	else
+		return false;
+}
+
+function correctLength(min, max, content) {
+	if (content.length < min || content.length > max) {
+		return false;
+	} else
+		return true;
+}
 
 function formCompleted(form) {
 	var notEmpty = true;
