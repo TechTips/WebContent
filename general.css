@@ -42,6 +42,11 @@ header {
 	box-shadow:5px 5px 10px gray;
 }
 
+td {
+	min-width:130px;
+	text-align:center;
+}
+
 #wrapper {
 	border-radius:30px;
 	box-shadow:5px 5px 10px gray;
