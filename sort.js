@@ -9,36 +9,35 @@ function orderBy(key, order) {
 		}
 	}
 	if (order == "desc") {
-		tempTitle = new Array();
-		tempFecha = new Array();
-		tempPais = new Array();
-		tempTitle[0] = "";
-		tempFecha[0] = "";
-		tempPais[0] = "";
-		for ( var i = 1; i < len; i++) {
-			tempTitle[i] = getValue("title", elements[len - i]);
-			tempFecha[i] = getValue("fecha", elements[len - i]);
-			tempPais[i] = getValue("pais", elements[len - i]);
-		}
-		for ( var i = 1; i < len; i++) {
-			elements[i].getElementsByTagName("td")[1].innerHTML = tempTitle[i];
-			elements[i].getElementsByTagName("td")[2].innerHTML = tempFecha[i];
-			elements[i].getElementsByTagName("td")[3].innerHTML = tempPais[i];
-		}
+		invertir(elements);
 	}
 }
 
-function copyElement(targetArray, tIndex, sourceArray, sIndex) {
-	targetArray[tIndex].getElementsByTagName("td")[1].innerHTML = getValue(
-			"title", sourceArray[sIndex]);
-	targetArray[tIndex].getElementsByTagName("td")[2].innerHTML = getValue(
-			"fecha", sourceArray[sIndex]);
-	targetArray[tIndex].getElementsByTagName("td")[3].innerHTML = getValue(
-			"pais", sourceArray[sIndex]);
+function invertir(elements) {
+	tempImg = new Array();
+	tempTitle = new Array();
+	tempFecha = new Array();
+	tempPais = new Array();
+	var len = elements.length;
+	for ( var i = 1; i < len; i++) {
+		tempImg[i] = getValue("img", elements[len - i]);
+		tempTitle[i] = getValue("title", elements[len - i]);
+		tempFecha[i] = getValue("fecha", elements[len - i]);
+		tempPais[i] = getValue("pais", elements[len - i]);
+	}
+	for ( var i = 1; i < len; i++) {
+		elements[i].getElementsByTagName("td")[0].innerHTML = tempImg[i];
+		elements[i].getElementsByTagName("td")[1].innerHTML = tempTitle[i];
+		elements[i].getElementsByTagName("td")[2].innerHTML = tempFecha[i];
+		elements[i].getElementsByTagName("td")[3].innerHTML = tempPais[i];
+	}
 }
 
+
 function getValue(key, element) {
-	if (key == "title")
+	if (key == "img")
+		ref = 0;
+	else if (key == "title")
 		ref = 1;
 	else if (key == "fecha")
 		ref = 2;
@@ -48,10 +47,13 @@ function getValue(key, element) {
 }
 
 function swap(elements, i1, i2) {
+	newi2Img = getValue("img", elements[i1]);
 	newi2Title = getValue("title", elements[i1]);
 	newi2Fecha = getValue("fecha", elements[i1]);
 	newi2Pais = getValue("pais", elements[i1]);
 
+	elements[i1].getElementsByTagName("td")[0].innerHTML = getValue("img",
+			elements[i2]);
 	elements[i1].getElementsByTagName("td")[1].innerHTML = getValue("title",
 			elements[i2]);
 	elements[i1].getElementsByTagName("td")[2].innerHTML = getValue("fecha",
@@ -59,6 +61,7 @@ function swap(elements, i1, i2) {
 	elements[i1].getElementsByTagName("td")[3].innerHTML = getValue("pais",
 			elements[i2]);
 
+	elements[i2].getElementsByTagName("td")[0].innerHTML = newi2Img;
 	elements[i2].getElementsByTagName("td")[1].innerHTML = newi2Title;
 	elements[i2].getElementsByTagName("td")[2].innerHTML = newi2Fecha;
 	elements[i2].getElementsByTagName("td")[3].innerHTML = newi2Pais;
