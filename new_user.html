@@ -3,16 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <title>Fotos para todos</title>
-<link rel="stylesheet" href="print.css" media="print" />
-<link rel="stylesheet" href="general.css" media="screen"/>
-<link rel="stylesheet" href="responsive_small.css" media="screen and (max-width:940px)" />
-<link rel="stylesheet" href="responsive_big.css" media="screen and (min-width:939px)" />
-<script src=validation.js></script>
+<link rel="stylesheet" href="css/print.css" media="print" />
+<link rel="stylesheet" href="css/general.css" media="screen"/>
+<link rel="stylesheet" href="css/color_principal.css" media="screen" title="Principal"/>
+<link rel="stylesheet alternate" href="css/color_alternativo.css" media="screen" title="Alternativo" disabled="true" />
+<link rel="stylesheet" href="css/responsive_small.css" media="screen and (max-width:940px)" />
+<link rel="stylesheet" href="css/responsive_big.css" media="screen and (min-width:939px)" />
+<script src=js/validation.js></script>
+<script src="js/style_change.js"></script>
 </head>
-<body>
+<body onLoad="retrieveAndSetStyle()" onUnload="saveStyle()">
 	<header>
 		<h1>Fotos para todos</h1>
 		<h2>¡Compartir y encontrar fotos gratis!</h2>
+		<p><a href="javascript:estilo('Alternativo')" id="color_change">ESTILO ALTERNATIVO</a></p>
 	</header>
 	<div id="wrapper">
 		<div id="nav">

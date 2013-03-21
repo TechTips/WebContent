@@ -1,0 +1,13 @@
+@CHARSET "UTF-8";
+
+body {
+	background-color: #cccccc;
+}
+
+#wrapper {
+	background-color: #cccccc;
+}
+
+.link {
+	background-color: #c1dad6;
+}
