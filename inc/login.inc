@@ -1,5 +1,5 @@
 
-<form id="registerForm" action="member_validation.php" method="post"
+<form id="registerForm" action="control_acceso.php" method="post"
 	onSubmit="return memberValidation(this)">
 	<div id="userNameBlock">
 		<label for="userName">
