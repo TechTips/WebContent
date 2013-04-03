@@ -1,5 +1,5 @@
 <?php
-$menu_links = array("search_result.php","index.php");
+$menu_links = array("index.php");
 require_once("inc/head.inc");
 require_once("inc/headers.inc");
 require_once("inc/nav.inc");

@@ -9,6 +9,8 @@ foreach($menu_links as $link) {
 	else if($link=="new_album.php") $link_text="Crear un nuevo álbum";
 	else if($link=="see_albums.php") $link_text="Visualizar tus álbumes";
 	else if($link=="baja.php") $link_text="Darse de baja";
+	else if($link=="forget.php") $link_text="Olvidarme en este equipo";
+	else if($link=="cerrar_session.php") $link_text="Cerrar sesión";
 	
 	$links=$links."<a class='link' href=".$link.">".$link_text."</a>";
 }
