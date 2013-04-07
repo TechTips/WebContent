@@ -1,7 +1,8 @@
 <?php
 session_start();
 session_destroy();
-setcookie("PHPSESSID","",time()-3600);
+$params = session_get_cookie_params();
+setcookie(session_name(), '', 0, $params['path'], $params['domain'], $params['secure'], isset($params['httponly']));
 //echo '<a href="index.php">Session destroyed, now going back to index...</a>';
 redirect_to_index();
 

@@ -5,12 +5,12 @@
 <body>
 <h1>Testing...</h1>
 <?php 
-require_once('inc/db.inc');
-	$sql = "SELECT Fichero, Titulo, Fecha, NomPais, FRegistro FROM Fotos, Paises WHERE Fotos.Pais = Paises.IdPais ORDER BY FRegistro DESC LIMIT 5;";
+require_once('inc/db.inc'); 
+	$sql = "SELECT fotos.IdFoto, fotos.Fichero, fotos.Titulo, fotos.Fecha, fotos.IdPais, paises.NomPais, albumes.Titulo FROM fotos JOIN paises ON paises.IdPais=fotos.pais JOIN albumes ON albumes.IdAlbum=fotos.album;";
 	$query_result = getQueryResult($sql);
 
 	while($fila = mysql_fetch_array($query_result)) {
-	echo '<a href=""><img width=100 height=100 src=fotos/'.$fila['Fichero'].'></a>'.$fila['Titulo']. ', ' . $fila['Fecha'].', '.$fila['NomPais'].'<br/>';
+	echo $fila['Fichero'].'; Titulo: '.$fila['Titulo']. '; Fecha: ' . $fila['Fecha'].'; Pais: '.$fila['NomPais'].'<br/>';
 	}
 	closeQuery($query_result);
 ?>

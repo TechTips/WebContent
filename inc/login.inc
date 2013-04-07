@@ -1,16 +1,17 @@
 <?php
+
 	// If session started: show name
-	session_start();
 	$recordado=isset($_COOKIE['username']);
-	$session_started=isset($_SESSION['username']);
+	$session_started=isset($_COOKIE['PHPSESSID']);
 	$registered=($recordado||$session_started);
 	if ($recordado)
 		$strDate = date("d-m-Y \a \l\a\s H:i:s",strtotime($_COOKIE['lastvisit']));
 	$menu_links = array("photo_search.php");
 	if($recordado||$session_started)
-		array_push($menu_links,"menu_registrado.php","cerrar_session.php");
+		array_push($menu_links,"member_home.php","my_albums.php","new_album.php","new_photo.php","logout.php","baja.php","index.php");
 	if($session_started) {
 		// show user name
+		session_start();
 		echo "<p>Bienvenido ".$_SESSION['username']."!</p>";
 	}
 	if ($recordado) {
@@ -25,7 +26,7 @@
 	}
 	
 	if(!$recordado&&!$session_started) {	
-		array_push($menu_links,"new_user.php");
+		array_push($menu_links,"new_user.php","index.php");
 ?>
 <form id="registerForm" action="control_acceso.php" method="post"
 	onSubmit="return memberValidation(this)">
@@ -40,7 +41,7 @@
 			<b>Contraseña:</b>
 		</label>
 		<input type="password" id="password" name="password" placeholder="Contraseña"
-			pattern="[A-Za-z0-9]{6}"
+			pattern="[A-Za-z0-9]{6,}"
 		/>
 	</div>
 	<input type="submit" id="submit" name="submit" value="Entrar">

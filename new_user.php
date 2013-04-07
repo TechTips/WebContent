@@ -1,8 +1,9 @@
 <?php
-$menu_links = array("index.php");
+$menu_links= array();
 require_once("inc/head.inc");
 require_once("inc/headers.inc");
 require_once("inc/nav.inc");
+require_once("inc/db.inc");
 ?>
 
 <h3>Nuevo usuario</h3>
@@ -43,7 +44,17 @@ require_once("inc/nav.inc");
 	</div>
 	<div class="entryBox">
 		<label for="country">País: </label>
-		<input type="text" class="inputWidth" id="country" name="country" placeholder="Nombre de país">
+		<select id="country">
+		<?php
+		 $sql = "SELECT IdPais, NomPais FROM paises";
+		 $query_result=getQueryResult($sql);
+		 while($fila = mysql_fetch_array($query_result)) {
+			echo '<option value='.$fila['IdPais'].'>'.$fila['NomPais'].'</option>';
+		}
+		closeQuery($query_result);
+		?>
+		</select>
+<!-- 		<input type="text" class="inputWidth" id="country" name="country" placeholder="Nombre de país"> -->
 	</div>
 	<div class="entryBox">
 		<label for="photo">Incluir foto en tu perfil: </label>

@@ -33,7 +33,9 @@ function onlySpacesAndTabs(content) {
 	}
 	return true;
 }
-
+function validateNewPhoto(form) {
+	return true;
+}
 function validateNewMember(form) {
 	if (formCompleted(form) == false)
 		return false;

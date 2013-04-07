@@ -1,31 +1,7 @@
 <?php
-// check if session has started
-session_start();
-if(!isset($_SESSION["username"])) {
-	// Session not started: if it is a remembered user, start session for that user
-	if(isset($_COOKIE['username'])) {
-		session_start();
-		$user=$_COOKIE['username'];
-		$_SESSION['username']=$user;
-		setcookie('lastvisit',date("c"),(time()+60*60*24*30));
-	} 
-	// Session not started and not a remembered user, so exit
-	else {
-		$menu_links = array("index.php", "new_user.php");
-		require_once("inc/head.inc");
-		require_once("inc/headers.inc");
-		require_once("inc/nav.inc");
-		echo "<p>¡Error!</p>";
-		echo "<p>Has intentado acceder a una página reservada para usuarios registrados</p>";
-		echo "<p>Deberías <a href='new_user.php'>registrarte</a> primero, o volver a <a href='index.php'>la página principal</a></p>";
-	}
-} else {// if session has started, no problem... continue
-	$user=$_SESSION['username'];
 
-$menu_links = array("cerrar_session.php", "see_albums.php","new_album.php","baja.php","index.php");
-require_once("inc/head.inc");
-require_once("inc/headers.inc");
-require_once("inc/nav.inc");
+//$menu_links = array("photo_search.php", "my_albums.php","new_album.php","new_photo.php","logout.php","baja.php","index.php");
+require_once("inc/registered_user_only.inc");
 
 $email="juan@fotosparatodos.es";
 $date="12/09/1980";
@@ -87,5 +63,4 @@ $country="Australia";
 <?php
 
 require_once("inc/footers.inc");
-}
 ?>

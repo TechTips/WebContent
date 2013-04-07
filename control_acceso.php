@@ -1,4 +1,6 @@
 <?php
+require_once("inc/db.inc");
+
 // Se puede suponer que hay un userName posteado porque se verifica con javascript
 // antes de mandar el formulario
 $destino='index.php';
@@ -17,23 +19,25 @@ if(isRegistered($user,$password)) {
 	session_start();
 	$_SESSION['username']=$user;
 	echo "= Recordar value".var_dump($recordar)."<br/>";
-	redirect('menu_registrado.php');
+	redirect('index.php');
 } else {
-	session_destroy();
 	redirect('index.php');
 }
 
 function isRegistered($user,$password) {
-	$registeredUsers = array("juan","sara");
-	$correspondingPasswords = array("juan22","sara22");
+	$user=mysql_real_escape_string($user);
+	$password=mysql_real_escape_string($password);
+	$sql="SELECT NomUsuario, Clave FROM usuarios WHERE NomUsuario='".$user."' AND Clave='".$password."';";
+
+	$query_result = getQueryResult($sql);
 	
-	for ($i=0;$i<count($registeredUsers);$i++) {
-		if($registeredUsers[$i]==$user) {
-			if($correspondingPasswords[$i]==$password)
-				return true;
-		}
+	if($fila = mysql_fetch_array($query_result)) {
+		closeQuery($query_result);
+		return true;
+	} else {
+		closeQuery($query_result);
+		return false;
 	}
-	return false;
 }
 
 function redirect($destino) {

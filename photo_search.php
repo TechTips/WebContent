@@ -1,8 +1,6 @@
 <?php
-$menu_links = array("index.php");
-require_once("inc/head.inc");
-require_once("inc/headers.inc");
-require_once("inc/nav.inc");
+require_once("inc/open_access_page.inc");
+require_once("inc/db.inc");
 ?>
 <h3>Buscar fotos...</h3>
 
@@ -24,8 +22,19 @@ require_once("inc/nav.inc");
 		<input type="text" class="inputWidth" id="photo_date_to" name="photo_date_to" />
 	</div>
 	<div class="entryBox">
-		<label for="country">País:</label>
-		<input type="text" class="inputWidth" id="country" name="country" />
+		<label for="country">País: </label>
+		<select id="country" name="country">
+			<option value=""></option>
+			<?php
+			 $sql = "SELECT IdPais, NomPais FROM paises";
+			 $query_result=getQueryResult($sql);
+			 while($fila = mysql_fetch_array($query_result)) {
+				echo '<option value='.$fila['IdPais'].'>'.$fila['NomPais'].'</option>';
+			}
+			closeQuery($query_result);
+			?>
+		</select>
+		<!-- <input type="text" class="inputWidth" id="country" name="country" /> -->
 	</div>
 	<div class="entryBox">
 		<label for="album">Álbum:</label>

@@ -1,47 +1,35 @@
 <?php
-// check if session has started
-session_start();
-if(!isset($_SESSION["username"])) {
-	// Session not started: if it is a remembered user, start session for that user
-	if(isset($_COOKIE['username'])) {
-		session_start();
-		$user=$_COOKIE['username'];
-		$_SESSION['username']=$user;
-		setcookie('lastvisit',date("c"),(time()+60*60*24*30));
-	} 
-	// Session not started and not a remembered user, so exit
-	else {
-		$menu_links = array("index.php", "new_user.php");
-		require_once("inc/head.inc");
-		require_once("inc/headers.inc");
-		require_once("inc/nav.inc");
-		echo "<p>¡Error!</p>";
-		echo "<p>Has intentado acceder a una página reservada para usuarios registrados</p>";
-		echo "<p>Deberías <a href='new_user.php'>registrarte</a> primero, o volver a <a href='index.php'>la página principal</a></p>";
-	}
-} else {// if session has started, no problem... continue
-	$user=$_SESSION['username'];
+require_once("inc/registered_user_only.inc");
+require_once("inc/db.inc");
 
-$menu_links = array("cerrar_session.php", "baja.php","index.php");
-require_once("inc/head.inc");
-require_once("inc/headers.inc");
-require_once("inc/nav.inc");
+$foto_id=mysql_real_escape_string($_GET['foto_id']);
+$sql="SELECT fotos.Fichero, fotos.Titulo, fotos.Fecha, paises.NomPais, albumes.Titulo, usuarios.NomUsuario FROM fotos JOIN paises ON fotos.Pais=paises.IdPais JOIN albumes ON fotos.Album=albumes.IdAlbum JOIN usuarios ON albumes.Usuario=usuarios.IdUsuario WHERE fotos.IdFoto=".$foto_id.";";
 
+$query_result = getQueryResult($sql);
+if($fila = mysql_fetch_array($query_result)) {
 ?>
 <h3>Detalle de la foto</h3>
 
-<img id="foto" class="withBorder" src="fotos/camino.jpg" alt="camino" width="300" height="300">
+<img
+	id="foto" class="withBorder" src="fotos/<?php echo $fila['Fichero'];?>"
+	alt="camino" width="300" height="300">
 
 <div id="photo_detail_text">
-	<label>Foto:</label><?php echo $_GET['foto_id']?><br /><br />
-	<label>Nombre: </label>Mi choza <br /><br />
-	<label>Fecha: </label>22/09/2000 <br /><br />
-	<label>País: </label>Isla Azul <br /><br />
-	<label>Álbum de fotos: </label>Mis aventuras <br /><br />
-	<label>Usuario: </label>Billy
+	<label>Título:</label>
+	<?php echo $fila[1];?>
+	<br /> <br /> <label>Fecha: </label>
+	<?php echo $fila['Fecha'];?>
+	<br /> <br /> <label>País: </label>
+	<?php echo $fila['NomPais'];?>
+	<br /> <br /> <label>Álbum de fotos: </label>
+	<?php echo $fila[4];?>
+	<br /> <br /> <label>Subido por: </label>
+	<?php echo $fila['NomUsuario'];?>
 </div>
-			
+
 <?php
+
+} //end if($fila
+closeQuery($query_result);
 require_once("inc/footers.inc");
-}
 ?>

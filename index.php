@@ -1,45 +1,25 @@
 <?php
-$menu_links = array("new_user.php","photo_search.php");
-require_once("inc/head.inc");
-require_once("inc/headers.inc");
-require_once("inc/login.inc");
-require_once("inc/nav.inc");
-?>
+// para utilizar debug, add to URL: ?XDEBUG_SESSION_START=FotosParaTodos
+require_once("inc/open_access_page.inc");
+require_once("inc/db.inc");
 
-<h3>Últimas fotos subidas</h3>
 
-<ul>
-	<li><a href="photo_detail.php?foto_id=01">
-			<img src="fotos/camino.jpg" class="withBorder" alt="camino" width="175" height="175">
-		</a>
-		<div class="photoText">
-			Título: xxxx <br />Fecha: xx-xx-xx <br />País: xxxx
-		</div></li>
-	<li><a href="photo_detail.php?foto_id=02">
-			<img src="fotos/rio.jpg" class="withBorder" alt="rio" width="175" height="175">
-		</a>
-		<div class="photoText">
-			Título: xxxx <br />Fecha: xx-xx-xx <br />País: xxxx
-		</div></li>
-	<li><a href="photo_detail.phpfoto_id=03">
-			<img src="fotos/arbol.jpg" class="withBorder" alt="arbol" width="175" height="175">
-		</a>
-		<div class="photoText">
-			Título: xxxx <br />Fecha: xx-xx-xx <br />País: xxxx
-		</div></li>
-	<li><a href="photo_detail.phpfoto_id=04">
-			<img src="fotos/nieve.jpg" class="withBorder" alt="nieve" width="175" height="175">
-		</a>
-		<div class="photoText">
-			Título: xxxx <br />Fecha: xx-xx-xx <br />País: xxxx
-		</div></li>
-	<li><a href="photo_detail.phpfoto_id=05">
-			<img src="fotos/otono.jpg" class="withBorder" alt="otono" width="175" height="175">
-		</a>
-		<div class="photoText">
-			Título: xxxx <br />Fecha: xx-xx-xx <br />País: xxxx
-		</div></li>
-</ul>
-<?php
+	echo '<h3>Las últimas cinco fotos subidas</h3><ul>';
+
+	$sql = "SELECT IdFoto, Fichero, Titulo, Fecha, NomPais, FRegistro FROM Fotos, Paises WHERE Fotos.Pais = Paises.IdPais ORDER BY FRegistro DESC LIMIT 5;";
+	$query_result = getQueryResult($sql);
+
+	while($fila = mysql_fetch_array($query_result)) {
+		$link="<a href='photo_detail.php?foto_id=".$fila['IdFoto']."'>";
+		$output= '<li>';
+		if($registered) $output=$output.$link;
+		$output=$output.'<img src=fotos/'.$fila['Fichero'].' class="withBorder" alt="camino" width="175" height="175">';
+		if($registered) $output=$output."</a>";
+		echo $output;
+		echo '<div class="photoText">Título: '.$fila['Titulo'].'<br/>Fecha: '.$fila['Fecha'].'<br/>País: '.$fila['NomPais'].'<br/></div></li>';
+	}
+	closeQuery($query_result);
+
+echo '</ul>';
 require_once("inc/footers.inc");
 ?>

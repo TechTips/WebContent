@@ -117,6 +117,9 @@ label {
 	width: 300px;
 }
 
+.inline {
+	display:inline-block;
+}
 /* For photo_detail.html */
 #photo_detail_text {
 	font: 20px garamond, arial;

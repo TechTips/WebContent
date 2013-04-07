@@ -2,15 +2,23 @@ function orderBy(key, order) {
 	// This is a bubble sort algorithm
 	var elements = document.getElementsByTagName("tr");
 	var len = elements.length;
-	for ( var i = 1; i < len; i++) {
-		for ( var j = (len - 1); j >= (i + 1); j--) {
-			if (isLessThan(key, elements[j], elements[j - 1]))
-				swap(elements, j, j - 1);
+
+	var swapped = true;
+	var j = 0;
+	while (swapped) {
+		swapped = false;
+		j++;
+		for ( var i = 1; i < len - j; i++) {
+			if (isLessThan(key, elements[i], elements[i + 1])) {
+				swap(elements, i, i + 1);
+				swapped = true;
+			}
 		}
 	}
-	if (order == "desc") {
-		invertir(elements);
-	}
+	
+	if (order == "desc") 
+		invertir(elements); 
+	
 }
 
 function invertir(elements) {
@@ -32,7 +40,6 @@ function invertir(elements) {
 		elements[i].getElementsByTagName("td")[3].innerHTML = tempPais[i];
 	}
 }
-
 
 function getValue(key, element) {
 	if (key == "img")
@@ -68,23 +75,44 @@ function swap(elements, i1, i2) {
 }
 
 function isLessThan(key, i1, i2) {
-	if (key == "title" || key == "pais")
-		return (getValue(key, i1) < getValue(key, i2));
+	if (key == "title" || key == "pais") {
+		var firstValue=getValue(key,i1);
+		var secondValue=getValue(key,i2);
+		firstValue=eliminateAccents(firstValue);
+		secondValue=eliminateAccents(secondValue);
+		return (firstValue < secondValue);
+	}
 	fecha1 = getValue("fecha", i1);
 	fecha2 = getValue("fecha", i2);
 	fecha1Split = fecha1.split("-");
 	fecha2Split = fecha2.split("-");
-	if (fecha1Split[2] < fecha2Split[2])
+	if (fecha1Split[0] < fecha2Split[0])
 		return true;
-	else if (fecha1Split[2] > fecha2Split[2])
+	else if (fecha1Split[0] > fecha2Split[0])
 		return false;
 	else if (fecha1Split[1] < fecha2Split[1])
 		return true;
 	else if (fecha1Split[1] > fecha2Split[1])
 		return false;
-	else if (fecha1Split[0] < fecha2Split[0])
+	else if (fecha1Split[2] < fecha2Split[2])
 		return true;
 	else
 		return false;
 
+}
+
+function eliminateAccents(text) {
+	text=text.replace(/Á/g,"A");
+	text=text.replace(/á/g,"a");
+	text=text.replace(/É/g,"E");
+	text=text.replace(/é/g,"e");
+	text=text.replace(/Í/g,"I");
+	text=text.replace(/í/g,"i");
+	text=text.replace(/Ó/g,"O");
+	text=text.replace(/ó/g,"o");
+	text=text.replace(/Ú/g,"U");
+	text=text.replace(/ú/g,"u");
+	text=text.replace(/Ñ/g,"N");
+	text=text.replace(/ñ/g,"n");
+	return text;
 }
