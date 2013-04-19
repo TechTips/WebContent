@@ -2,7 +2,9 @@
 require_once("inc/registered_user_only.inc");
 require_once("inc/foto_table.inc");
 
+connect();
 $IdAlbum = mysql_real_escape_string($_GET['IdAlbum']);
+disconnect();
 $sql = "SELECT albumes.Titulo FROM albumes WHERE albumes.IdAlbum=".$IdAlbum.";";
 $query_result = getQueryResult($sql);
 

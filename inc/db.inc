@@ -9,23 +9,45 @@
 	}
 	closeQuery($query_result);
 //   */
+$server="mysql.hostinger.es";
+$DBname="u578573009_fpt";
+$DBuser="u578573009_fptu";
+$DBpass="sanjuan91";
+/*
+$server="127.0.0.1";
+$DBname="fotospatosdb";
+$DBuser="zprueba";
+$DBpass="sanjuan99";
+ */
 function getQueryResult($sql) {
 	global $iden;
-	if(!($iden = mysql_connect("127.0.0.1", "zprueba", "sanjuan99")))
-		die("Error: No se pudo conectar");
-
-	if(!mysql_select_db("fotospatosdb", $iden))
-		die("Error: No existe la base de datos");
-	mysql_query ("SET NAMES 'utf8'");
+	
+	connect();
+	
+/*	$setnames_result = mysql_query ("SET NAMES 'utf8'");
+	if(!$query_result) 
+		die("Se ha producido un error en al utilizar SET NAMES<br><br>Número del error: ".mysql_errno($iden)."<br> Mensaje del error: ".mysql_error($iden));
+*/	
 	$query_result = mysql_query($sql, $iden);
-	if(!$query_result) {
+	if(!$query_result) 
 		die("Se ha producido un error en la consulta<br><br>Número del error: ".mysql_errno($iden)."<br> Mensaje del error: ".mysql_error($iden));
-	}
+	
 	return $query_result;
+}
+function connect() {
+	global $iden,$server,$DBuser,$DBpass,$DBname;
+	if(!($iden = mysql_connect($server, $DBuser, $DBpass)))
+		die("Error: No se pudo conectar");
+	if(!mysql_select_db($DBname, $iden))
+		die("Error: No existe la base de datos");
+}
+function disconnect() {
+	global $iden;
+	mysql_close($iden);
 }
 function closeQuery($query_result) {
 	global $iden;
 	mysql_free_result($query_result);
-	mysql_close($iden);
+	disconnect();
 }
 ?>

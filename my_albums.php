@@ -1,9 +1,9 @@
 <?php
 require_once("inc/registered_user_only.inc");
 require_once("inc/db.inc");
-
+connect();
 $user=mysql_real_escape_string($user);
-
+disconnect();
 $sql = "SELECT albumes.IdAlbum, albumes.Titulo, albumes.Descripcion, albumes.Fecha, paises.NomPais FROM albumes JOIN usuarios ON albumes.Usuario=usuarios.IdUsuario JOIN paises ON albumes.Pais=paises.IdPais WHERE usuarios.NomUsuario='".$user."';";
 $query_result = getQueryResult($sql);
 $albums_display="";

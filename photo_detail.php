@@ -1,8 +1,9 @@
 <?php
 require_once("inc/registered_user_only.inc");
 require_once("inc/db.inc");
-
+connect();
 $foto_id=mysql_real_escape_string($_GET['foto_id']);
+disconnect();
 $sql="SELECT fotos.Fichero, fotos.Titulo, fotos.Fecha, paises.NomPais, albumes.Titulo, usuarios.NomUsuario FROM fotos JOIN paises ON fotos.Pais=paises.IdPais JOIN albumes ON fotos.Album=albumes.IdAlbum JOIN usuarios ON albumes.Usuario=usuarios.IdUsuario WHERE fotos.IdFoto=".$foto_id.";";
 
 $query_result = getQueryResult($sql);

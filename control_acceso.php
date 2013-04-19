@@ -20,13 +20,20 @@ if(isRegistered($user,$password)) {
 	$_SESSION['username']=$user;
 	echo "= Recordar value".var_dump($recordar)."<br/>";
 	redirect('index.php');
-} else {
-	redirect('index.php');
+} else { 
+	require_once("inc/open_access_page.inc");
+	echo "Usuario y/o contraseña incorrectos<br>
+Debes volver a ingresar tu nombre de usuario y contraseña<br>
+Si no tienes, deberías registrarte primero";	
+
+	//echo '<a href="'.$destino.'">Want to go to '.$destino.'</a><br>';
 }
 
 function isRegistered($user,$password) {
+	connect();
 	$user=mysql_real_escape_string($user);
 	$password=mysql_real_escape_string($password);
+	disconnect();
 	$sql="SELECT NomUsuario, Clave FROM usuarios WHERE NomUsuario='".$user."' AND Clave='".$password."';";
 
 	$query_result = getQueryResult($sql);

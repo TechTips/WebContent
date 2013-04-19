@@ -6,7 +6,7 @@ require_once("inc/db.inc");
 
 	echo '<h3>Las últimas cinco fotos subidas</h3><ul>';
 
-	$sql = "SELECT IdFoto, Fichero, Titulo, Fecha, NomPais, FRegistro FROM Fotos, Paises WHERE Fotos.Pais = Paises.IdPais ORDER BY FRegistro DESC LIMIT 5;";
+	$sql = "SELECT fotos.IdFoto, fotos.Fichero, fotos.Titulo, fotos.Fecha, paises.NomPais, fotos.FRegistro FROM fotos, paises WHERE fotos.Pais = paises.IdPais ORDER BY FRegistro DESC LIMIT 5;";
 	$query_result = getQueryResult($sql);
 
 	while($fila = mysql_fetch_array($query_result)) {
