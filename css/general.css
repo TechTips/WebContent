@@ -83,6 +83,10 @@ td {
 	font-weight: bold;
 }
 
+.activeLink {
+	font-family: "Arial Black";
+}
+
 li {
 	list-style-type: none;
 	margin: 5px;

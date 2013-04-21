@@ -8,29 +8,31 @@
 	echo $fila['Fichero'].$fila['IdFoto']. ', ' . $fila['Titulo'].'<br/>';
 	}
 	closeQuery($query_result);
-//   */
+//   
 $server="mysql.hostinger.es";
 $DBname="u578573009_fpt";
 $DBuser="u578573009_fptu";
 $DBpass="sanjuan91";
-/*
+*/
 $server="127.0.0.1";
 $DBname="fotospatosdb";
 $DBuser="zprueba";
 $DBpass="sanjuan99";
- */
+ 
 function getQueryResult($sql) {
 	global $iden;
 	
 	connect();
 	
-/*	$setnames_result = mysql_query ("SET NAMES 'utf8'");
-	if(!$query_result) 
+	$setnames_result = mysql_query ("SET NAMES 'utf8'");
+/*	if(!$query_result) 
 		die("Se ha producido un error en al utilizar SET NAMES<br><br>Número del error: ".mysql_errno($iden)."<br> Mensaje del error: ".mysql_error($iden));
 */	
 	$query_result = mysql_query($sql, $iden);
-	if(!$query_result) 
-		die("Se ha producido un error en la consulta<br><br>Número del error: ".mysql_errno($iden)."<br> Mensaje del error: ".mysql_error($iden));
+	if(!$query_result) {
+		if(mysql_errno($iden)!=1062) 
+			die("Se ha producido un error en la operación SQL<br><br>Número del error: ".mysql_errno($iden)."<br> Mensaje del error: ".mysql_error($iden));
+	}
 	
 	return $query_result;
 }
@@ -49,5 +51,11 @@ function closeQuery($query_result) {
 	global $iden;
 	mysql_free_result($query_result);
 	disconnect();
+}
+function invertDate($date){
+	$day = strtok($date,"-");
+	$month = strtok("-");
+	$year = strtok("-");
+	return $year."-".$month."-".$day;
 }
 ?>

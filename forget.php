@@ -1,5 +1,5 @@
 <?php
-	setcookie('username', "", time()-30);
+	setcookie('user_name', "", time()-30);
 	setcookie('password', "", time()-30);
 	setcookie('lastvisit', "", time()-30);
 	$host=$_SERVER['HTTP_HOST'];

@@ -12,12 +12,12 @@ else
 	$recordar=false;
 if(isRegistered($user,$password)) {
 	if($recordar==true) {
-		setcookie('username',$user,(time()+60*60*24*365));
+		setcookie('user_name',$user,(time()+60*60*24*365));
 		setcookie('password',$password,(time()+60*60*24*365));
 		setcookie('lastvisit',date("c"),(time()+60*60*24*30));
 	}
 	session_start();
-	$_SESSION['username']=$user;
+	$_SESSION['user_name']=$user;
 	echo "= Recordar value".var_dump($recordar)."<br/>";
 	redirect('index.php');
 } else { 

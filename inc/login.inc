@@ -1,26 +1,26 @@
 <?php
 
 	// If session started: show name
-	$recordado=isset($_COOKIE['username']);
+	$recordado=isset($_COOKIE['user_name']);
 	$session_started=isset($_COOKIE['PHPSESSID']);
 	$registered=($recordado||$session_started);
 	if ($recordado)
 		$strDate = date("d-m-Y \a \l\a\s H:i:s",strtotime($_COOKIE['lastvisit']));
 	$menu_links = array("photo_search.php");
 	if($recordado||$session_started)
-		array_push($menu_links,"member_home.php","my_albums.php","new_album.php","new_photo.php","logout.php","baja.php","index.php");
+		array_push($menu_links,"member_home.php","my_albums.php","new_album.php","new_photo.php","logout.php","confirm_cancel.php","index.php");
 	if($session_started) {
 		// show user name
 		session_start();
-		echo "<p>Bienvenido ".$_SESSION['username']."!</p>";
+		echo "<p>Bienvenido ".$_SESSION['user_name']."!</p>";
 	}
 	if ($recordado) {
 		array_push($menu_links,"forget.php");
 		if(!$session_started) {
-			echo "<p>Bienvenido ".$_COOKIE['username']."!</p><p>Tú última visita fue:</br>".$strDate."</p>";
+			echo "<p>Bienvenido ".$_COOKIE['user_name']."!</p><p>Tú última visita fue:</br>".$strDate."</p>";
 			session_start();
 			setcookie('lastvisit',date("c"),(time()+60*60*24*30));
-			$_SESSION['username']=$_COOKIE['username'];
+			$_SESSION['user_name']=$_COOKIE['user_name'];
 		} else
 			echo "<p>Tu session comenzó:</br>".$strDate."</p>";
 	}

@@ -8,7 +8,7 @@ require_once("inc/db.inc");
 
 <h3>Nuevo usuario</h3>
 
-<form id="newUserForm" action="new_user_answer.php" method="post" onSubmit="return validateNewMember(this)">
+<form id="newUserForm" action="new_user_validation.php" method="post" onSubmit="return validateNewMember(this)">
 	<div class="entryBox">
 		<label for="user_name">Nombre de usuario: </label>
 		<input type="text" class="inputWidth" id="user_name" name="user_name" placeholder="Tu nombre">
@@ -29,9 +29,9 @@ require_once("inc/db.inc");
 		<fieldset id="fieldsetGender">
 			<legend>Sexo</legend>
 			<label id="firstRadio" class="radioLabel" for="hombre">Hombre: </label>
-			<input type="radio" id="hombre" name="gender" value="Hombre">
+			<input type="radio" id="hombre" name="gender" value="1">
 			<label class="radioLabel" for="mujer">Mujer: </label>
-			<input type="radio" id="mujer" name="gender" value="Mujer">
+			<input type="radio" id="mujer" name="gender" value="0">
 		</fieldset>
 	</div>
 	<div class="entryBox">
@@ -43,18 +43,8 @@ require_once("inc/db.inc");
 		<input type="text" class="inputWidth" id="city" name="city" placeholder="Nombre de ciudad">
 	</div>
 	<div class="entryBox">
-		<label for="country">País: </label>
-		<select id="country">
-		<?php
-		 $sql = "SELECT IdPais, NomPais FROM paises";
-		 $query_result=getQueryResult($sql);
-		 while($fila = mysql_fetch_array($query_result)) {
-			echo '<option value='.$fila['IdPais'].'>'.$fila['NomPais'].'</option>';
-		}
-		closeQuery($query_result);
-		?>
-		</select>
-<!-- 		<input type="text" class="inputWidth" id="country" name="country" placeholder="Nombre de país"> -->
+		<?php require_once("inc/country_dropdown_box.inc");?>
+		<!--<input type="text" class="inputWidth" id="country" name="country" placeholder="Nombre de país"> -->
 	</div>
 	<div class="entryBox">
 		<label for="photo">Incluir foto en tu perfil: </label>

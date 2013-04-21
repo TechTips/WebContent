@@ -79,7 +79,7 @@ function getCookie(c_name) {
 }
 /*
 function setCookieValue() {
-	setCookie("username", "kev", 365);
+	setCookie("user_name", "kev", 365);
 	document.getElementById("cookieDisplay").innerHTML = "Cookie:" + document.cookie;
 }
 function displayCookieValue(action) {

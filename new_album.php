@@ -15,21 +15,11 @@ require_once("inc/db.inc");
 		<input type="text" class="inputWidth" id="description" name="description" placeholder="Descripción">
 	</div>
 	<div class="entryBox">
-		<label for="fecha">Fecha de fotos incluidos: </label>
-		<input type="text" class="inputWidth" id="fecha" name="fecha" placeholder="Fecha">
+		<label for="date">Fecha de fotos incluidos: </label>
+		<input type="text" class="inputWidth" id="date" name="date" placeholder="Formato: DD-MM-YYYY">
 	</div>
 	<div class="entryBox">
-		<label for="country">País: </label>
-		<select id="country">
-		<?php
-			 $sql = "SELECT IdPais, NomPais FROM paises";
-			 $query_result=getQueryResult($sql);
-			 while($fila = mysql_fetch_array($query_result)) {
-				echo '<option value='.$fila['IdPais'].'>'.$fila['NomPais'].'</option>';
-			}
-			closeQuery($query_result);
-		?>
-		</select>
+		<?php require_once("inc/country_dropdown_box.inc")?>
 	</div>
 	<div class="entryBox submissionButtons">
 		<input type="submit" id="submit" name="submit" value="Crear">
