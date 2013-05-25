@@ -5,7 +5,7 @@ require_once("inc/db.inc");
 
 <h3>Subir una nueva foto</h3>
 
-<form id="newPhotoForm" action="new_photo_validation.php" method="post" onSubmit="return validateNewPhoto(this)">
+<form id="newPhotoForm" action="new_photo_validation.php" enctype="multipart/form-data" method="post" onSubmit="return validateNewPhoto(this)">
 	<div class="entryBox">
 		<label for="title">Título de la foto: </label>
 		<input type="text" class="inputWidth" id="title" name="title" placeholder="Título">
@@ -18,13 +18,11 @@ require_once("inc/db.inc");
 		<?php require_once("inc/country_dropdown_box.inc");?>
 	</div>
 	<div class="entryBox">
-		<label for="photo">Fichero de la foto: </label>
-		<input type="text" class="inputWidth" id="file" name="file" placeholder="Fichero">
-<!-- 		<input type="file" accept="image/jpg"> -->
+		<label for="photo">Archivo de la foto: </label>
+ 		<input type="file" accept="image/jpg" name="album_photo">
 	</div>
-	<div class="entryBox">
-		<?php require_once("inc/album_dropdown_box.inc"); ?>
-	</div>
+	<input type="text" name="id_album" value=<?php echo $_POST['id_album']; ?> hidden="hidden">
+	<input type="text" name="album_name" value=<?php echo "'".$_POST['album_name']."'"; ?> hidden="hidden">
 	<div class="entryBox submissionButtons">
 		<input type="submit" id="submit" name="submit" value="Registrar la nueva foto">
 		<input type="Reset" value="Borrar formulario">

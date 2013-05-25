@@ -12,14 +12,14 @@ if($fila = mysql_fetch_array($query_result)) {
 <h3>Detalle de la foto</h3>
 
 <img
-	id="foto" class="withBorder" src="fotos/<?php echo $fila['Fichero'];?>"
+	id="foto" class="withBorder" src="fotos/<?php echo $fila['NomUsuario']."/".$fila[4]."/".$fila['Fichero'];?>"
 	alt="camino" width="300" height="300">
 
 <div id="photo_detail_text">
 	<label>Título:</label>
 	<?php echo $fila[1];?>
 	<br /> <br /> <label>Fecha: </label>
-	<?php echo $fila['Fecha'];?>
+	<?php echo invertDate($fila['Fecha']);?>
 	<br /> <br /> <label>País: </label>
 	<?php echo $fila['NomPais'];?>
 	<br /> <br /> <label>Álbum de fotos: </label>

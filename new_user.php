@@ -8,7 +8,7 @@ require_once("inc/db.inc");
 
 <h3>Nuevo usuario</h3>
 
-<form id="newUserForm" action="new_user_validation.php" method="post" onSubmit="return validateNewMember(this)">
+<form id="newUserForm" action="new_user_validation.php" enctype="multipart/form-data" method="post" onSubmit="return validateNewMember(this)">
 	<div class="entryBox">
 		<label for="user_name">Nombre de usuario: </label>
 		<input type="text" class="inputWidth" id="user_name" name="user_name" placeholder="Tu nombre">
@@ -48,7 +48,7 @@ require_once("inc/db.inc");
 	</div>
 	<div class="entryBox">
 		<label for="photo">Incluir foto en tu perfil: </label>
-		<input type="file" accept="image/jpg">
+		<input type="file" accept="image/jpg" name="users_photo" >
 	</div>
 	<div class="entryBox submissionButtons">
 		<input type="submit" id="submit" name="submit" value="Regístrate">

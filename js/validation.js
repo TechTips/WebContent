@@ -245,7 +245,7 @@ function correctDateFormat(dateStr) {
 	// Returns true if 'dateStr' is a valid date with format DD-MM-YYYY, false otherwise
 	var dateArray = dateStr.split("-", 3);
 	var iDay = parseInt(dateArray[0]);
-	var iMonth = parseInt(dateArray[1]) - 1;
+	var iMonth = parseInt(dateArray[1],10)-1;
 	var iYear = parseInt(dateArray[2]);
 	var dateObj = new Date(iYear, iMonth, iDay);
 	var dDate = dateObj.getDate();

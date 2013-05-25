@@ -8,17 +8,11 @@
 	echo $fila['Fichero'].$fila['IdFoto']. ', ' . $fila['Titulo'].'<br/>';
 	}
 	closeQuery($query_result);
-//   
+//   */
 $server="mysql.hostinger.es";
 $DBname="u578573009_fpt";
 $DBuser="u578573009_fptu";
 $DBpass="sanjuan91";
-/*/
-$server="127.0.0.1";
-$DBname="fotospatos";
-$DBuser="fotosusuario";
-$DBpass="sanjuan99";
- 
 function getQueryResult($sql) {
 	global $iden;
 	

@@ -22,19 +22,7 @@ require_once("inc/db.inc");
 		<input type="text" class="inputWidth" id="photo_date_to" name="photo_date_to" />
 	</div>
 	<div class="entryBox">
-		<label for="country">País: </label>
-		<select id="country" name="country">
-			<option value=""></option>
-			<?php
-			 $sql = "SELECT IdPais, NomPais FROM paises";
-			 $query_result=getQueryResult($sql);
-			 while($fila = mysql_fetch_array($query_result)) {
-				echo '<option value='.$fila['IdPais'].'>'.$fila['NomPais'].'</option>';
-			}
-			closeQuery($query_result);
-			?>
-		</select>
-		<!-- <input type="text" class="inputWidth" id="country" name="country" /> -->
+		<?php require_once("inc/country_dropdown_box.inc");?>
 	</div>
 	<div class="entryBox">
 		<label for="album">Álbum:</label>

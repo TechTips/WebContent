@@ -9,18 +9,20 @@ $query_result = getQueryResult($sql);
 $albums_display="";
 while($fila = mysql_fetch_array($query_result)) {
 //	echo $fila['Fichero'].$fila['IdFoto']. ', ' . $fila['Titulo'].'<br/>';
-	$albums_display=$albums_display."<h3>".$fila['Titulo']."</h3>";
-	$albums_display=$albums_display."<p class='inline'><a href='see_album.php?IdAlbum=".$fila['IdAlbum']."'>Ver las fotos de este álbum</a></p><br>";
-	$albums_display=$albums_display."<label>Descripción: </label><p class='inline'>".$fila['Descripcion']."</p><br>";
-	$albums_display=$albums_display."<label>Fecha: </label><p class='inline'>".$fila['Fecha']."</p><br>";
-	$albums_display=$albums_display."<label>País: </label><p class='inline'>".$fila['NomPais']."</p><br>";
+	$albums_display.="<hr><h3>".$fila['Titulo']."</h3>";
+	$albums_display.="<label>Descripción: </label>".$fila['Descripcion']."<br>";
+	$albums_display.="<label>Fecha: </label>".invertDate($fila['Fecha'])."<br>";
+	$albums_display.="<label>País: </label>".$fila['NomPais']."<br><br>";
+	$albums_display.="<form id='seeAlbumForm' action='see_album.php' method='post'><input name='id_album' type='text' value=".$fila['IdAlbum']." hidden><input type='submit' value='Ver las fotos de este álbum'></form>";
 } // end while 
 closeQuery($query_result);
 
 if($albums_display=="") {
 	echo "<h3>No tienes ningún álbum creado todavía</h3>";
+	echo "<a href='new_album.php'><button>Crear un nuevo álbum</button></a>";
 } else {
-	echo "<h2>Tus álbumes</h2>";
+	echo "<h2>Mis álbumes</h2>";
+	echo "<a href='new_album.php'><button>Crear un nuevo álbum</button></a>";
 	echo $albums_display;
 }
 

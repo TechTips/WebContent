@@ -1,11 +1,19 @@
 <?php
 require_once("inc/open_access_page.inc");
 require_once("inc/foto_table.inc");
-
+connect();
+$_GET['user_name']=mysql_real_escape_string($_GET['user_name']);
+$_GET['title']=mysql_real_escape_string($_GET['title']);
+$_GET['photo_id']=mysql_real_escape_string($_GET['photo_id']);
+$_GET['photo_date_from']=mysql_real_escape_string($_GET['photo_date_from']);
+$_GET['photo_date_to']=mysql_real_escape_string($_GET['photo_date_to']);
+$_GET['country']=mysql_real_escape_string($_GET['country']);
+$_GET['album']=mysql_real_escape_string($_GET['album']);
+disconnect();
 $search_data="";
 $where="";
 if ($_GET['title']!=""){
-	$search_data=$search_data."Title: ".$_GET['title']."; ";
+	$search_data=$search_data."Título: ".$_GET['title']."; ";
 	$where = 'fotos.Titulo="'.$_GET['title'].'"';
 }
 if ($_GET['photo_id']!="") { 
